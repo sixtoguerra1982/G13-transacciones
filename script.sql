@@ -22,3 +22,26 @@ BEGIN TRANSACTION;
 
     SELECT * FROM producto WHERE descripcion = 'producto9' ;    
 COMMIT;
+
+
+BEGIN TRANSACTION;
+
+    SELECT * FROM producto WHERE descripcion = 'producto1' OR descripcion = 'producto2' OR descripcion = 'producto8';
+
+    INSERT INTO compra(id, cliente_id, fecha) VALUES (43, 2,'2021-07-28');
+
+    INSERT INTO detalle_compra(producto_id, compra_id, cantidad) VALUES (1,43,3);
+
+    INSERT INTO detalle_compra(producto_id, compra_id, cantidad) VALUES(2,43,3);
+
+    INSERT INTO detalle_compra(producto_id, compra_id, cantidad) VALUES(8,43,3);
+
+    UPDATE producto SET stock = stock - 3 WHERE descripcion ='producto1';
+
+    UPDATE producto SET stock = stock - 3 WHERE descripcion ='producto2';
+
+    UPDATE producto SET stock = stock + 4 WHERE descripcion ='producto8';
+
+    UPDATE producto SET stock = stock - 3 WHERE descripcion ='producto8';
+
+COMMIT; 
